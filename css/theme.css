@@ -1,0 +1,171 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font: 400 14px/22px Roboto,sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header{
+    padding: 70px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1),rgba(0,0,0,0.5)),
+    url('../images/bg-forest.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-color: rgb(54,54,54);*/
+}
+header h1{
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 40px;
+    text-shadow: 0 0 25px #666;
+    line-height: 1.2;
+}
+header hr{
+    width: 150px;
+    text-align: center;
+    margin: 25px auto 20px auto;
+    border-width: 5px;
+}
+header p{
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+#canvas-image-blending {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+
+#wrapper{
+    flex: 1;
+}
+#contents{
+    flex: 1;
+    padding: 0 50px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+h1{
+    font-weight: 500;
+    margin: 45px 0 30px 0;
+}
+h2{
+    font-weight: 100;
+    margin: 30px 0 10px 0;
+}
+hr{
+    border: none;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+}
+#codeEditor{
+    display: block;
+    width: 100%;
+    height: 150px;
+    box-sizing: border-box;
+    margin: 20px 0;
+}
+.canvas{
+    display: flex;
+    margin: 35px 0;
+}
+.canvas .subplot{
+    flex: 1;
+    text-align: center;
+}
+.canvas canvas{
+    max-width: 250px;
+}
+input[type='range']{
+    cursor: pointer;
+}
+footer{
+    margin-top: 30px;
+    background-color: #f2f2f2;
+    padding: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+/*body, div, p {
+    font: 400 14px/22px Roboto,sans-serif;
+}
+canvas, img, video {
+    border: 1px solid black;
+}
+td {
+    padding: 10px 0px 0px 10px;
+    text-align: center;
+}
+button {
+    display: inline-block;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+button[disabled] {
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+.control {
+    margin-bottom: 3px;
+}
+.err {
+    color: red;
+    font-weight: bold;
+}
+.caption {
+    margin: 0;
+    font-weight: bold;
+}
+.code {
+    padding: 4px 6px;
+    margin: 4px 8px 4px 2px;
+    background-color: #FBFCFD;
+    border: 1px solid #C4CFE5;
+    font-family: monospace, fixed;
+    font-size: 13px;
+    min-height: 13px;
+    line-height: 1.0;
+    text-wrap: unrestricted;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+.hidden {
+    display: none;
+}
+.small {
+    max-width: 300px;
+}*/

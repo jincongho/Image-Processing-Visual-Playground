@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Morphological Image Processing</title>
+        <link href="css/theme.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <header>
+            <h1>Morphological Image Processing</h1>
+            <hr>
+            <p>Utilises set theoretic operations to process images with structuring elements.</p>
+            <!--<canvas id="canvas-image-blending"></canvas>-->
+        </header>
+        <div id="wrapper">
+        <div id="contents">
+            <h1>Morphological Operations</h1>
+            <hr>
+            <h2>1. Dilation - Square-Hole, Text-Broken</h2>
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="dilation-sh-canvas"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="dilation-sh-input" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="dilation-sh-output"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="dilation-sh-label" style="padding: 0 20px;">Radius = </label>
+                    <input id="dilation-sh-range" type="range" min="1" max="40" value="1" class="slider" step="1" style="flex: 1">
+                </div>
+            </div>
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="dilation-tb-canvas"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="dilation-tb-input" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="dilation-tb-output"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="dilation-tb-label" style="padding: 0 20px;">Radius = </label>
+                    <input id="dilation-tb-range" type="range" min="1" max="40" value="1" class="slider" step="1" style="flex: 1">
+                </div>
+            </div>
+            <h2>2. Erosion - Square</h2>
+            <!--<div>
+                <textarea class="code" id="codeEditor" spellcheck="false">
+                </textarea>
+                <p class="err" id="errorMessage"></p>
+            </div>-->
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="canvasInput"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="fileInput" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="canvasOutput"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="radius" style="padding: 0 20px;">Radius = </label>
+                    <input type="range" min="1" max="40" value="1" class="slider" step="1" id="myRange" style="flex: 1">
+                </div>
+            </div>
+            <h2>3. Opening - Squares, Cells</h2>
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="opening-s-canvas"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="opening-s-input" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="opening-s-output"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="opening-s-label" style="padding: 0 20px;">Radius = </label>
+                    <input id="opening-s-range" type="range" min="1" max="40" value="1" class="slider" step="1" style="flex: 1">
+                </div>
+            </div>
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="opening-c-canvas"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="opening-c-input" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="opening-c-output"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="opening-c-label" style="padding: 0 20px;">Radius = </label>
+                    <input id="opening-c-range" type="range" min="1" max="40" value="1" class="slider" step="1" style="flex: 1">
+                </div>
+            </div>
+            <h2>4. Closing - Dark Blobs</h2>
+            <div>
+                <div class="canvas">
+                    <div class="subplot">
+                        <canvas id="closing-db-canvas"></canvas><br>
+                        <span>input</span><br>
+                        <input type="file" id="closing-db-input" name="file" accept="image/*" />
+                    </div>
+                    <div class="subplot">
+                        <canvas id="closing-db-output"></canvas><br>
+                        <span>output</span>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <label id="closing-db-label" style="padding: 0 20px;">Radius = </label>
+                    <input id="closing-db-range" type="range" min="1" max="40" value="1" class="slider" step="1" style="flex: 1">
+                </div>
+            </div>
+            <!--<h1>Morphological Algorithms & Applications</h1>
+            <hr>
+            <h2>1. Boundary Extration - Lincoln</h2>
+            <h2>2. Connected Components Extration</h2>-->
+        </div>
+    </div>
+        <footer>
+            Copyright (c) 2018 Ho Jin Cong. All rights reserved.
+        </footer>
+        
+        <script src="https://sarcadass.github.io/granim.js/assets/js/vendor/jquery-3.1.0.min.js"></script>
+        <script src="https://sarcadass.github.io/granim.js/assets/js/vendor/granim.min.js"></script>
+        <script src="js/utils.js" type="text/javascript"></script>
+        <script id="dilation-sh" type="text/code-snippet">let src = cv.imread('canvasInput');
+let dst = new cv.Mat();
+let M = cv.Mat.ones(5, 5, cv.CV_8U);
+let anchor = new cv.Point(-1, -1);
+// You can try more different parameters
+cv.erode(src, dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+cv.imshow('canvasOutput', dst);
+src.delete(); dst.delete(); M.delete();</script>
+        <script id="erosion" type="text/code-snippet">let src = cv.imread('canvasInput');
+let dst = new cv.Mat();
+let M = cv.Mat.ones(5, 5, cv.CV_8U);
+let anchor = new cv.Point(-1, -1);
+// You can try more different parameters
+cv.erode(src, dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+cv.imshow('canvasOutput', dst);
+src.delete(); dst.delete(); M.delete();</script>
+
+        <script type="text/javascript" src="js/morphological.js"></script>
+    </body>
+</html>
