@@ -60,12 +60,12 @@ utils.loadOpenCv(() => {
         opening('opening-s-canvas', 'opening-s-output', radius);
     }
 
-    opening('opening-c-canvas', 'opening-c-output', 1);
+    opening_thres('opening-c-canvas', 'opening-c-output', 1);
     document.getElementById('opening-c-label').innerHTML = 'Radius = 1';
     document.getElementById('opening-c-range').oninput = function() {
         radius = parseInt(this.value);
         document.getElementById('opening-c-label').innerHTML = 'Radius = ' + radius;
-        opening('opening-c-canvas', 'opening-c-output', radius);
+        opening_thres('opening-c-canvas', 'opening-c-output', radius);
     }
 
     closing('closing-db-canvas', 'closing-db-output', 1);
@@ -83,6 +83,8 @@ utils.loadOpenCv(() => {
         document.getElementById('-label').innerHTML = 'Radius = ' + radius;
         dilation('-canvas', '-output', radius);
     }*/
+
+    $('.loading-cv').hide();
 
 });
 
@@ -114,7 +116,20 @@ function opening(inputId, outputId, radius){
     let M = cv.Mat.ones(radius, radius, cv.CV_8U);
     let anchor = new cv.Point(-1, -1);
     // You can try more different parameters
-    cv.threshold(src, dst, 128, 255, cv.THRESH_BINARY);
+    cv.morphologyEx(src, dst, cv.MORPH_OPEN, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+    cv.imshow(outputId, dst);
+    src.delete(); dst.delete(); M.delete();
+};
+
+
+function opening_thres(inputId, outputId, radius){
+    let src = cv.imread(inputId);
+    let dst = new cv.Mat();
+    let M = cv.Mat.ones(radius, radius, cv.CV_8U);
+    let anchor = new cv.Point(-1, -1);
+    // You can try more different parameters
+    cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+    cv.threshold(src, dst, 204, 255, cv.THRESH_BINARY_INV);
     cv.morphologyEx(dst, dst, cv.MORPH_OPEN, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
     cv.imshow(outputId, dst);
     src.delete(); dst.delete(); M.delete();
